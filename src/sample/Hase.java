@@ -6,16 +6,15 @@ public class Hase {
     double verlustRate = 0;
     double gleichgewicht = 0;
 
-    public Hase(double haseBiomasse, double zuwachsRate, double verlustRate, double gleichgewicht)
+    public Hase(double haseBiomasse, double zuwachsRate, double gleichgewicht)
     {
         this.haseBiomasse = haseBiomasse;
         this.zuwachsRate = zuwachsRate;
-        this.verlustRate = verlustRate;
         this.gleichgewicht = gleichgewicht;
     }
-    double giveHaseVerlust(double treffen)
+    double giveHaseVerlust(double treffen, Fuchs fuchs)
     {
-        return verlustRate*treffen;
+        return zuwachsRate/fuchs.getGleichgewicht()*treffen;
     }
 
     double giveHaseZuwachs()
@@ -34,5 +33,13 @@ public class Hase {
     @Override
     public String toString() {
         return "Hasebiomasse: " + haseBiomasse;
+    }
+
+    public double getZuwachsRate() {
+        return zuwachsRate;
+    }
+
+    public double getGleichgewicht() {
+        return gleichgewicht;
     }
 }

@@ -13,14 +13,14 @@ import javafx.stage.Stage;
 
 public class Main extends Application{
 
-    Hase hase = new Hase(500,0.08,0.002, 500);
+
 
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        Parent root = FXMLLoader.load(getClass().getResource("gui.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("guiStart.fxml"));
         primaryStage.setTitle("Raeuber und Beute");
-        primaryStage.setScene(new Scene(root, 1280, 720));
+        primaryStage.setScene(new Scene(root, 480, 320));
         primaryStage.show();
     }
 

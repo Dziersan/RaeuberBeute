@@ -1,17 +1,20 @@
 package sample;
 
 public class Weide {
-    double kapazität = 0;
-    double beschraenkung = 0;
+    double kapazität;
+    double abBegrenzung;
+    double bisBegrenzung;
 
-    public Weide(double kapazität)
+    public Weide(double kapazität, double abBegrenzung, double bisBegrenzung)
     {
         this.kapazität = kapazität;
+        this.abBegrenzung = abBegrenzung;
+        this.bisBegrenzung = bisBegrenzung;
     }
 
     double giveKapazitaet(double time)
     {
-        if(time < 99 || time >199)
+        if(time < abBegrenzung  || time > bisBegrenzung)
         {
             return 1000;
         }

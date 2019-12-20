@@ -3,14 +3,13 @@ package sample;
 public class Fuchs {
     double fuchsBiomasse = 0;
     double gewinnRate = 0;
-    double energieRate = 0;
+    double verlustRate = 0;
     double gleichgewicht = 0;
 
-    public Fuchs(double fuchsBiomasse, double gewinnRate, double energieRate, double gleichgewicht)
+    public Fuchs(double fuchsBiomasse,double verlustRate, double gleichgewicht)
     {
         this.fuchsBiomasse = fuchsBiomasse;
-        this.gewinnRate = gewinnRate;
-        this.energieRate = energieRate;
+        this.verlustRate = verlustRate;
         this.gleichgewicht = gleichgewicht;
     }
 
@@ -21,7 +20,7 @@ public class Fuchs {
 
     double giveFuchsVerlust()
     {
-        return fuchsBiomasse*energieRate;
+        return fuchsBiomasse* verlustRate;
     }
 
     public double getFuchsBiomasse() {
@@ -36,4 +35,13 @@ public class Fuchs {
     public String toString() {
         return "Fuchsbiomasse: " + fuchsBiomasse;
     }
+
+    public double getGleichgewicht() {
+        return gleichgewicht;
+    }
+public double giveFuchsZuwachs(double treffen, Hase hase)
+{
+    return verlustRate/hase.getGleichgewicht()*treffen;
+}
+
 }

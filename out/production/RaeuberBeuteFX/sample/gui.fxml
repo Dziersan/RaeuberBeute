@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
@@ -7,20 +8,20 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="276.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="276.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ControllerHaseFuchs">
    <children>
       <LineChart fx:id="linechart1" layoutX="313.0" prefHeight="290.0" prefWidth="307.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="318.8" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <xAxis>
-          <CategoryAxis side="BOTTOM" />
+          <NumberAxis side="BOTTOM" fx:id="xAxis" />
         </xAxis>
         <yAxis>
-          <NumberAxis side="LEFT" />
+          <NumberAxis fx:id="yAxis" side="LEFT" />
         </yAxis>
       </LineChart>
       <Label layoutX="17.0" layoutY="58.0" prefHeight="26.0" prefWidth="92.0" text="Anzahl Beute" />
       <Label layoutX="14.0" layoutY="91.0" prefHeight="18.0" prefWidth="79.0" text="Anzahl Räuber" />
-      <TextField fx:id="fieldAnzahlBeute" layoutX="100.0" layoutY="59.0" text="500" />
-      <TextField fx:id="fieldAnzahlRaeuber" layoutX="100.0" layoutY="88.0" text="10" />
-      <Button fx:id="buttonStart1" onAction="#handleButtonStart" layoutX="149.0" layoutY="138.0" mnemonicParsing="false" text="Start" />
+      <TextField fx:id="fieldAnzahlBeute" layoutX="100.0" layoutY="59.0" prefHeight="26.0" prefWidth="52.0" text="500" />
+      <TextField fx:id="fieldAnzahlRaeuber" layoutX="100.0" layoutY="88.0" prefHeight="26.0" prefWidth="52.0" text="10" />
+      <Button fx:id="buttonStart1" layoutX="154.0" layoutY="208.0" mnemonicParsing="false" text="Start" onAction="#handleButtonStart" />
    </children>
 </AnchorPane>
