@@ -13,10 +13,10 @@ public class ControllerStart {
     public void gotoHaseFuchs(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("gui2-0.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("HaseFuchsLineGraph.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 600, 400);
             Stage stage = new Stage();
-            stage.setTitle("New Window");
+            stage.setTitle("Hase und Fuchs mit begrenzter Weidekapazität");
             stage.setScene(scene);
             stage.show();
             ((Node)(event.getSource())).getScene().getWindow().hide();
@@ -26,11 +26,11 @@ public class ControllerStart {
 
     public void gotoBeuteRaeuber(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("gui2-0.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            FXMLLoader fxmlLoader1 = new FXMLLoader();
+            fxmlLoader1.setLocation(getClass().getResource("BeuteRaeuberLineGraph.fxml"));
+            Scene scene = new Scene(fxmlLoader1.load());
             Stage stage = new Stage();
-            stage.setTitle("New Window");
+            stage.setTitle("Beute und Räuber mit unbegrenzter Weidekapazität");
             stage.setScene(scene);
             stage.show();
             ((Node)(event.getSource())).getScene().getWindow().hide();

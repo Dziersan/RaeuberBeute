@@ -1,48 +1,55 @@
 package sample;
 
 public class Raeuber {
-    double raeuberBiomasse = 0;
-    double gewinnRate = 0;
 
-    public double getEnergieRate() {
-        return energieRate;
+
+    double biomasse = 0;
+    double gleichgewicht = 0;
+    double rate = 0;
+
+    public Raeuber(double Biomasse, double rate, double gleichgewicht)
+    {
+        this.biomasse = Biomasse;
+        this.rate = rate;
+        this.gleichgewicht = gleichgewicht;
     }
 
-    double energieRate = 0;
+    public double giveTreffen(Beute tier, double treffen)
+    {
+        return this.rate/tier.getGleichgewicht()*treffen;
+    }
+
+    public double giveBiomasseAenderung()
+    {
+        return (biomasse*rate);
+    }
+
+    public double getBiomasse() {
+        return biomasse;
+    }
+
+    public void setBiomasse(double biomasse) {
+        this.biomasse = biomasse;
+    }
 
     public double getGleichgewicht() {
         return gleichgewicht;
     }
 
-    double gleichgewicht = 0;
-
-    public Raeuber(double raeuberBiomasse, double energieRate, double gleichgewicht)
-    {
-        this.raeuberBiomasse = raeuberBiomasse;
-        this.energieRate = energieRate;
+    public void setGleichgewicht(double gleichgewicht) {
         this.gleichgewicht = gleichgewicht;
     }
 
-    double giveRaeuberZuwachs(double treffen, Beute beute)
-    {
-        return energieRate/beute.getGleichgewicht()*treffen;
+    public double getRate() {
+        return rate;
     }
 
-    double giveRaeuberVerlust()
-    {
-        return raeuberBiomasse *energieRate;
-    }
-
-    public double getRaeuberBiomasse() {
-        return raeuberBiomasse;
-    }
-
-    public void setRaeuberBiomasse(double raeuberBiomasse) {
-        this.raeuberBiomasse = raeuberBiomasse;
+    public void setRate(double rate) {
+        this.rate = rate;
     }
 
     @Override
     public String toString() {
-        return "Fuchsbiomasse: " + raeuberBiomasse;
+        return "Fuchsbiomasse: " + biomasse;
     }
 }

@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ControllerStart">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ControllerStart">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="323.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
       <children>
-        <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;" text="Drag components from Library here…" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
-          <font>
-            <Font size="18.0" />
-          </font>
-        </Label>
-            <Button fx:id="gotoScene1" layoutX="112.0" layoutY="103.0" mnemonicParsing="false" prefHeight="175.0" prefWidth="192.0" text="Button" onAction="#gotoHaseFuchs" />
-            <Button fx:id="gotoScene2" layoutX="304.0" layoutY="103.0" mnemonicParsing="false" prefHeight="175.0" prefWidth="192.0" text="Button" onAction="#gotoBeuteRaeuber" />
+            <HBox layoutX="112.0" layoutY="103.0" AnchorPane.bottomAnchor="122.0" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="144.0" AnchorPane.topAnchor="103.0">
+               <children>
+                  <Button fx:id="gotoScene1" mnemonicParsing="false" onAction="#gotoHaseFuchs" prefHeight="175.0" prefWidth="192.0" text="Fuchs &amp; Hase" />
+                  <Button fx:id="gotoScene2" mnemonicParsing="false" onAction="#gotoBeuteRaeuber" prefHeight="175.0" prefWidth="192.0" text="Räuber &amp; Beute" />
+               </children>
+            </HBox>
+            <Label layoutX="113.0" layoutY="38.0" prefHeight="51.0" prefWidth="383.0" text="Räuber und Beute" AnchorPane.bottomAnchor="309.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="144.0" AnchorPane.topAnchor="38.0">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
       </children>
     </AnchorPane>
   </children>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ControllerBeuteRaeuber">
+   <children>
+      <LineChart fx:id="linechart1" alternativeColumnFillVisible="true" axisSortingPolicy="NONE" layoutX="313.0" prefHeight="290.0" prefWidth="307.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="318.8" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <xAxis>
+          <NumberAxis side="BOTTOM" fx:id="xAxis" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="yAxis" side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <VBox layoutX="17.0" layoutY="38.0">
+         <children>
+            <Label prefHeight="26.0" prefWidth="92.0" text="Anzahl" />
+            <Label prefHeight="26.0" prefWidth="92.0" text="Gleichgewicht" />
+            <Label prefHeight="26.0" prefWidth="73.0" text="Zuwachsrate" />
+            <Label prefHeight="26.0" prefWidth="92.0" text="Verlustrate" />
+         </children>
+      </VBox>
+      <Label layoutX="14.0" layoutY="91.0" prefHeight="18.0" prefWidth="79.0" />
+      <VBox layoutX="93.0" layoutY="38.0" />
+      <VBox layoutX="169.0" layoutY="38.0" />
+      <Button fx:id="buttonStart1" layoutX="165.0" layoutY="223.0" mnemonicParsing="false" onAction="#handleButtonStart" prefHeight="50.0" prefWidth="67.0" text="Start" />
+      <Label layoutX="147.0" layoutY="13.0" prefHeight="26.0" prefWidth="52.0" text="Beute" />
+      <Label layoutX="200.0" layoutY="13.0" prefHeight="26.0" prefWidth="52.0" text="Räuber" />
+      <Label layoutX="17.0" layoutY="235.0" prefHeight="26.0" prefWidth="92.0" text="Zeit" />
+      <Label layoutX="17.0" layoutY="260.0" prefHeight="26.0" prefWidth="92.0" text="Zeitschritt" />
+      <TextField fx:id="fieldTime" layoutX="93.0" layoutY="235.0" prefHeight="26.0" prefWidth="52.0" text="50" />
+      <TextField fx:id="fieldStep" layoutX="93.0" layoutY="260.0" prefHeight="26.0" prefWidth="52.0" text="0.2" />
+      <VBox layoutX="205.0" layoutY="32.0" />
+      <CheckBox fx:id="checkVorlaufend" layoutX="11.0" layoutY="214.0" mnemonicParsing="false" text="Zeit vorlaufend" />
+      <VBox layoutX="147.0" layoutY="37.0">
+         <children>
+            <TextField fx:id="fieldAnzahlBeute" prefHeight="26.0" prefWidth="52.0" text="20" />
+            <TextField fx:id="fieldGgewichtBeute" prefHeight="26.0" prefWidth="52.0" text="30" />
+            <TextField fx:id="fieldZuwachs" prefHeight="26.0" prefWidth="52.0" text="0.5" />
+         </children>
+      </VBox>
+      <TextField fx:id="fieldVerlust" layoutX="200.0" layoutY="116.0" prefHeight="26.0" prefWidth="52.0" text="0.2" />
+      <TextField fx:id="fieldGgewichtRaeuber" layoutX="200.0" layoutY="63.0" prefHeight="26.0" prefWidth="52.0" text="10" />
+      <TextField fx:id="fieldAnzahlRaeuber" layoutX="200.0" layoutY="38.0" prefHeight="26.0" prefWidth="52.0" text="5" />
+      <Button fx:id="buttonClear" layoutX="232.0" layoutY="223.0" mnemonicParsing="false" onAction="#handleButtonClear" prefHeight="50.0" prefWidth="74.0" text="Clear" />
+      <Button fx:id="buttonBack" layoutY="2.0" mnemonicParsing="false" onAction="#handleButtonBack" text="Back" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Button fx:id="buttonDaten" layoutX="165.0" layoutY="274.0" mnemonicParsing="false" onAction="#handleButtonDaten" prefHeight="25.0" prefWidth="67.0" text="Daten" />
+      <TableView fx:id="tableView" layoutX="-2.0" layoutY="299.0" prefHeight="150.0" prefWidth="334.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="300.0">
+        <columns>
+          <TableColumn fx:id="tableColumnTimestep" prefWidth="94.99999237060547" text="Timestep" />
+          <TableColumn fx:id="tableColumnBeute" prefWidth="119.0" text="Beute" />
+            <TableColumn fx:id="tableColumnRaeuber" prefWidth="119.0" text="Räuber" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

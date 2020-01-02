@@ -1,42 +1,55 @@
 package sample;
 
 public class Beute {
-    double beuteBiomasse = 0;
-    double zuwachsRate = 0;
-    double verlustRate = 0;
+    double biomasse = 0;
+    double rate = 0;
+    double gleichgewicht = 0;
+
+
+    public Beute(double biomasse, double rate, double gleichgewicht)
+    {
+        this.biomasse = biomasse;
+        this.rate = rate;
+        this.gleichgewicht = gleichgewicht;
+    }
+
+    public double giveBiomasseAenderung()
+    {
+        return (biomasse*rate);
+    }
+
+    public double giveTreffen(Raeuber tier, double treffen)
+    {
+        return this.rate/tier.getGleichgewicht()*treffen;
+    }
+
+    public double getBiomasse() {
+        return biomasse;
+    }
+
+
+    public void setBiomasse(double biomasse) {
+        this.biomasse = biomasse;
+    }
+
+    public double getRate() {
+        return rate;
+    }
+
+    public void setRate(double rate) {
+        this.rate = rate;
+    }
 
     public double getGleichgewicht() {
         return gleichgewicht;
     }
 
-    double gleichgewicht = 0;
-
-    public Beute(double beuteBiomasse, double zuwachsRate, double gleichgewicht)
-    {
-        this.beuteBiomasse = beuteBiomasse;
-        this.zuwachsRate = zuwachsRate;
+    public void setGleichgewicht(double gleichgewicht) {
         this.gleichgewicht = gleichgewicht;
-    }
-    double giveBeuteVerlust(double treffen, Raeuber raeuber)
-    {
-        return zuwachsRate/raeuber.getGleichgewicht()*treffen;
-    }
-
-    double giveBeuteZuwachs()
-    {
-        return zuwachsRate* beuteBiomasse;
-    }
-
-    public double getBeuteBiomasse() {
-        return beuteBiomasse;
-    }
-
-    public void setBeuteBiomasse(double beuteBiomasse) {
-        this.beuteBiomasse = beuteBiomasse;
     }
 
     @Override
     public String toString() {
-        return "Hasebiomasse: " + beuteBiomasse;
+        return "Hasebiomasse: " + biomasse;
     }
 }

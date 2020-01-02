@@ -20,7 +20,7 @@ public class Main extends Application{
 
         Parent root = FXMLLoader.load(getClass().getResource("guiStart.fxml"));
         primaryStage.setTitle("Raeuber und Beute");
-        primaryStage.setScene(new Scene(root, 480, 320));
+        primaryStage.setScene(new Scene(root, 580, 320));
         primaryStage.show();
     }
 
