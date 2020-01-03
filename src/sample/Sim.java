@@ -7,25 +7,6 @@ public class Sim {
         Beute beute = new Beute(400,0.08, 500);
         Raeuber raeuber = new Raeuber(10,0.2,20);
 
-//    for(double i = 0; i < 1; i+= 0.25)
-//
-//    {
-//        System.out.println(i);
-//        System.out.println(beute.toString());
-//        System.out.println(raeuber.toString());
-//        System.out.println();
-//
-//        treffen = Sim.treffen(beute, raeuber);
-//
-//        beute.setBiomasse(beute.getBiomasse()+week*
-//                (beute.giveBiomasseAenderung()- beute.giveTreffen(raeuber,treffen)));
-//
-//        treffen = Sim.treffen(beute, raeuber);
-//
-//        raeuber.setBiomasse(raeuber.getBiomasse()+week*
-//        (raeuber.giveTreffen(beute,treffen)- raeuber.giveBiomasseAenderung()));
-//
-//    }
     }
     static public Double[][][] getGraph(int length, double timestep, Beute beute, Raeuber raeuber)
     {

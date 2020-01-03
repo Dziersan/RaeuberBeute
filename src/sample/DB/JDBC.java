@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class JDBCTest {
+public class JDBC {
 
     public static Connection getConnection() throws SQLException
     {
@@ -43,7 +43,7 @@ public class JDBCTest {
         }
     }
 
-    private static void createSchema(Connection connection, String schemaName) throws SQLException
+    public static void createSchema(Connection connection, String schemaName) throws SQLException
     {
         Schema schema = new Schema(schemaName);
         updateStatement(connection, schema.drop());
@@ -51,7 +51,7 @@ public class JDBCTest {
         updateStatement(connection, schema.use());
     }
 
-    private static void createTables(Connection connection) throws SQLException
+    public static void createTables(Connection connection) throws SQLException
     {
         Table biomasse = new Table("Biomasse");
 
@@ -64,13 +64,12 @@ public class JDBCTest {
         updateStatement(connection, biomasse.create());
     }
 
-    private static void updateTable(Connection connection)
-    {
+    public static void updateTable(Connection connection) throws SQLException {
         Update biomasseUpdate = new Update("Biomasse");
-        System.out.println(biomasseUpdate.insertData(123,22,1));
+        updateStatement(connection, biomasseUpdate.insertData(123,22,1));
     }
 
-    private static void selectTable(Connection connection)
+    public static void selectTable(Connection connection)
     {
         Select select = new Select();
         select.selectTable("Timestep", "Biomasse_Hase");

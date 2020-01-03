@@ -1,8 +1,10 @@
 package sample.DB;
 
+
 import java.util.ArrayList;
 
 public class Table {
+
 
     String name = null;
     ArrayList<Attribute> attributes = new ArrayList<>();
@@ -45,6 +47,4 @@ public class Table {
         }
         return sqlStatement;
     }
-
-
 }

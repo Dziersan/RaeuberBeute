@@ -13,6 +13,7 @@ public class Update {
 
     public String insertData(Object...attribut)
     {
+
         ArrayList<Object> attribute = new ArrayList<Object>();
 
         attribute.addAll(Arrays.asList(attribut));
