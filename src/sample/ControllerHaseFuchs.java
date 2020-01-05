@@ -121,15 +121,16 @@ public class ControllerHaseFuchs implements Initializable
         });
         wait.play();
     }
-        Hase haseData = new Hase(haseBiomasse,zuwachsRate, ggewichtHase);
-        Fuchs fuchsData = new Fuchs(fuchsBiomasse,verlustRate,ggewichtFuchs);
-        Weide weideData = new Weide(1000,abBegrenzung,bisBegrenzung);
+    Hase haseData = new Hase(haseBiomasse,zuwachsRate, ggewichtHase);
+    Fuchs fuchsData = new Fuchs(fuchsBiomasse,verlustRate,ggewichtFuchs);
+    Weide weideData = new Weide(1000,abBegrenzung,bisBegrenzung);
 
-        Sim sim = new Sim(step, haseBiomasse, fuchsBiomasse, 1000);
+    Sim sim = new Sim(step, haseBiomasse, fuchsBiomasse, 1000);
 
-        tableView.getColumns().clear();
-        tableView.setItems(sim.getTableData(time, haseData, fuchsData, weideData));
-        tableView.getColumns().addAll(tableColumnTimestep, tableColumnHase, tableColumnFuchs, tableColumnWeide);
+    System.out.println(sim.getWeideData());
+    tableView.getColumns().clear();
+    tableView.setItems(sim.getTableData(time, haseData, fuchsData, weideData));
+    tableView.getColumns().addAll(tableColumnTimestep, tableColumnHase, tableColumnFuchs, tableColumnWeide);
     }
 
     public void handleButtonClear(){

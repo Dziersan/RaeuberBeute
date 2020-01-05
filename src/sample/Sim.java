@@ -17,11 +17,12 @@ public class Sim {
         this.raeuberBiomasse = raeuberBiomasse;
     }
 
-    public Sim(double timestep, double beuteBiomasse, double raeuberBiomasse, double weide)
+    public Sim(double timestep, double beuteBiomasse, double raeuberBiomasse, double weideData )
     {
         this.timestep = timestep;
         this.beuteBiomasse = beuteBiomasse;
         this.raeuberBiomasse = raeuberBiomasse;
+        this.weideData = weideData;
     }
 
     public ObservableList<Sim> getTableDataBH(int length, Beute beute, Raeuber raeuber) {
@@ -130,7 +131,6 @@ public class Sim {
             fuchs.setFuchsBiomasse(fuchs.getFuchsBiomasse() + timestep *
                     (fuchs.giveFuchsZuwachs(treffen,hase) - fuchs.giveFuchsVerlust()));
             raeuberBiomasse = GuiUtil.round(fuchs.getFuchsBiomasse());
-
             weideData = Sim.weideflaeche(hase, weide, step);
 
             tableData.add(new Sim(step, beuteBiomasse, raeuberBiomasse, weideData));
@@ -162,6 +162,9 @@ public class Sim {
     }
     public double getWeideData() {
         return weideData;
+    }
+    public void setWeideData(double weideData) {
+        this.weideData = weideData;
     }
 }
 
