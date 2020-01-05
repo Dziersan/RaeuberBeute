@@ -12,7 +12,7 @@ public class Weide {
         this.bisBegrenzung = bisBegrenzung;
     }
 
-    double giveKapazitaet(double time)
+    public double giveKapazitaet(double time)
     {
         if(time < abBegrenzung  || time > bisBegrenzung)
         {
@@ -21,6 +21,4 @@ public class Weide {
         else
             return 500;
     }
-
-
 }

@@ -46,11 +46,11 @@
       <TextField fx:id="fieldAnzahlRaeuber" layoutX="200.0" layoutY="38.0" prefHeight="26.0" prefWidth="52.0" text="5" />
       <Button fx:id="buttonClear" layoutX="232.0" layoutY="223.0" mnemonicParsing="false" onAction="#handleButtonClear" prefHeight="50.0" prefWidth="74.0" text="Clear" />
       <Button fx:id="buttonBack" layoutY="2.0" mnemonicParsing="false" onAction="#handleButtonBack" text="Back" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Button fx:id="buttonDaten" layoutX="165.0" layoutY="274.0" mnemonicParsing="false" onAction="#handleButtonDaten" prefHeight="25.0" prefWidth="67.0" text="Daten" />
+      <Button fx:id="buttonDaten" layoutX="165.0" layoutY="274.0" mnemonicParsing="false" onAction="#handleButtonDaten" prefHeight="25.0" prefWidth="67.0" text="Save DB" />
       <TableView fx:id="tableView" layoutX="-2.0" layoutY="299.0" prefHeight="150.0" prefWidth="334.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="300.0">
         <columns>
-          <TableColumn fx:id="tableColumnTimestep" prefWidth="94.99999237060547" text="Timestep" />
-          <TableColumn fx:id="tableColumnBeute" prefWidth="119.0" text="Beute" />
+            <TableColumn fx:id="tableColumnTimestep" prefWidth="94.99999237060547" text="Timestep" />
+            <TableColumn fx:id="tableColumnBeute" prefWidth="119.0" text="Beute" />
             <TableColumn fx:id="tableColumnRaeuber" prefWidth="119.0" text="Räuber" />
         </columns>
       </TableView>

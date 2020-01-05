@@ -14,7 +14,7 @@ public class ControllerStart {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("HaseFuchsLineGraph.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage();
             stage.setTitle("Hase und Fuchs mit begrenzter Weidekapazität");
             stage.setScene(scene);
