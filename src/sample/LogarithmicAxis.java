@@ -13,19 +13,10 @@
 //import javafx.beans.property.SimpleDoubleProperty;
 //import javafx.scene.chart.ValueAxis;
 //import javafx.util.Duration;
-//
-///**
-// * A logarithmic axis implementation for JavaFX 2 charts<br>
-// * <br>
-// *
-// * @author Kevin Senechal
-// *
-// */
-//public class LogarithmicAxis extends ValueAxis<Number> {
-//
-//    /**
-//     * The time of animation in ms
-//     */
+// class LogarithmicAxis extends ValueAxis<Number> {
+/**
+ *  Versuch die Achsen logarithmisch Anzeigen zu können. Code ist kopiert und versucht zu verstehen und anzupassen.
+ */
 //    private static final double ANIMATION_TIME = 2000;
 //    private final Timeline lowerRangeTimeline = new Timeline();
 //    private final Timeline upperRangeTimeline = new Timeline();
@@ -47,10 +38,7 @@
 //            e.printStackTrace();
 //        }
 //    }
-//
-//    /**
-//     * Bind our logarithmic bounds with the super class bounds, consider the base 10 logarithmic scale.
-//     */
+
 //    private void bindLogBoundsToDefaultBounds() {
 //        logLowerBound.bind(new DoubleBinding() {
 //
@@ -75,25 +63,14 @@
 //            }
 //        });
 //    }
-//
-//    /**
-//     * Validate the bounds by throwing an exception if the values are not conform to the mathematics log interval:
-//     * ]0,Double.MAX_VALUE]
-//     *
-//     * @param lowerBound
-//     * @param upperBound
-//     * @throws IllegalLogarithmicRangeException
-//     */
+
 //    private void validateBounds(double lowerBound, double upperBound) throws IllegalLogarithmicRangeException {
 //        if (lowerBound < 0 || upperBound < 0 || lowerBound > upperBound) {
 //            throw new IllegalLogarithmicRangeException(
 //                    "The logarithmic range should be include to ]0,Double.MAX_VALUE] and the lowerBound should be less than the upperBound");
 //        }
 //    }
-//
-//    /**
-//     * {@inheritDoc}
-//     */
+
 //    @Override
 //    protected List<Number> calculateMinorTickMarks() {
 //        Number[] range = getRange();
@@ -114,9 +91,6 @@
 //        return minorTickMarksPositions;
 //    }
 //
-//    /**
-//     * {@inheritDoc}
-//     */
 //    @Override
 //    protected List<Number> calculateTickValues(double length, Object range) {
 //        List<Number> tickPositions = new ArrayList<Number>();
@@ -148,10 +122,6 @@
 //        formatter.setMinimumIntegerDigits(1);
 //        return formatter.format(value);
 //    }
-//
-//    /**
-//     * {@inheritDoc}
-//     */
 //    @Override
 //    protected void setRange(Object range, boolean animate) {
 //        if (range != null) {

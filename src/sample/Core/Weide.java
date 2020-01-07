@@ -1,4 +1,4 @@
-package sample;
+package sample.Core;
 
 public class Weide {
     double kapazität;
@@ -12,6 +12,9 @@ public class Weide {
         this.bisBegrenzung = bisBegrenzung;
     }
 
+    /** Begrenzung der Weide wurde von Bossel vorgegeben, daher statische Werte
+     *
+     */
     public double giveKapazitaet(double time)
     {
         if(time < abBegrenzung  || time > bisBegrenzung)

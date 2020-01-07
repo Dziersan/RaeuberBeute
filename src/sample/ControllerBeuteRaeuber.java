@@ -1,23 +1,27 @@
 package sample;
 
 import javafx.animation.PauseTransition;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import javafx.stage.Stage;
+
 import javafx.util.Duration;
+
+import sample.Core.Beute;
+import sample.Core.GuiUtil;
+import sample.Core.Raeuber;
+import sample.Core.Sim;
 import sample.DB.*;
 
 import java.io.IOException;
@@ -30,7 +34,7 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 
 import static sample.DB.JDBC.getConnection;
-import static sample.GuiUtil.setTextield;
+import static sample.Core.GuiUtil.setTextield;
 
 public class ControllerBeuteRaeuber implements Initializable
 {
@@ -54,7 +58,11 @@ public class ControllerBeuteRaeuber implements Initializable
     double beuteBiomasse, step, ggewichtRaeuber, ggewichtBeute, verlustRate, zuwachsRate, raeuberBiomasse;
     int time, length;
 
-
+    /** initialize
+     * Constraints der Textfelder und Zuweisung der Spalten von dem Tableview
+     * setTextfield ist eine Methode aus der GuiUtil Klasse, die die Textfelder dadurch beschränkt,
+     * dass keine Buchstaben, maximal ein Punkt (Für double) und vier Nachkommastellen erlaubt.
+     */
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setTextield(fieldAnzahlBeute);
@@ -65,13 +73,16 @@ public class ControllerBeuteRaeuber implements Initializable
         setTextield(fieldTime);
         setTextield(fieldVerlust);
         setTextield(fieldZuwachs);
-        tableColumnTimestep.setCellValueFactory(new PropertyValueFactory<Sim, Double>("Timestep"));
+
+        //Der Name muss mit der Variablen aus der Klasse übereinstimmen, da er auf die Getter zugreift.
+        tableColumnTimestep.setCellValueFactory(new PropertyValueFactory<Sim, Double>("timestep"));
         tableColumnBeute.setCellValueFactory(new PropertyValueFactory<Sim, Double>("beuteBiomasse"));
         tableColumnRaeuber.setCellValueFactory(new PropertyValueFactory<Sim, Double>("raeuberBiomasse"));
 
     }
 
     public void handleButtonStart(ActionEvent actionEvent) {
+        //Zuweisung der Textfeld-Werten in die zuvor deklarierten Variablen
         beuteBiomasse = Double.parseDouble(fieldAnzahlBeute.getText());
         raeuberBiomasse = Double.parseDouble(fieldAnzahlRaeuber.getText());
         zuwachsRate = Double.parseDouble(fieldZuwachs.getText());
@@ -92,8 +103,16 @@ public class ControllerBeuteRaeuber implements Initializable
 
         beuteSeries.setName("Beute");
         raeuberSeries.setName("Räuber");
+
+        //Die Schritte (Steps) sind x < 1, daher werden diese für die For-Schleife in ein Int-Wert berechnet
+        //zb: Step = 0.5; Grenze = 100; DH scheife muss 200x durchlaufen (100/0.5)
         length = GuiUtil.getTime(time, step);
 
+        /** if / else Darstellung Diagramm:
+         * Wenn Checkbox = false ist, werden alle Daten aus dem Array in eine Series übergeben und
+         * nachdem es vollständig durchgelaufen ist, ausgegeben.
+         * Wenn Chechbox = false ist, werden alle 100 millisekunden ein weiterer Wert im Diagramm dargestellt.
+         */
         if (!isSelected)
         {
             for (int i = 0; i < length; i++)
@@ -106,7 +125,9 @@ public class ControllerBeuteRaeuber implements Initializable
         }
         else
         {
-
+            /**
+             * Änhlich wie eine Schleife, nur dass eine Iteration 100 Millisekunden warten soll.
+             */
             graph = Sim.getGraphBH(10000, step, beute, raeuber);
             var ref = new Object() {
                 int i = 0;
@@ -132,12 +153,19 @@ public class ControllerBeuteRaeuber implements Initializable
 
     }
 
+    /**
+     * Stopt die 100 Millisekunden Scheife, setzt den Graphen und das TableView zurück auf Standard
+     */
     public void handleButtonClear() {
         wait.stop();
         linechart1.getData().clear();
         tableView.getColumns().clear();
     }
 
+    /**
+     * Schließt die aktuelle Stage und öffnet die Mainstage
+     *
+     */
     public void handleButtonBack(ActionEvent event) {
         try {
             timer.cancel();
@@ -154,10 +182,14 @@ public class ControllerBeuteRaeuber implements Initializable
         }
     }
 
+    /** Speichern der Daten in die Datenbank
+     * Methoden aus dem DB.Package zur Erstellung des SQL-Codes Verbindung der Datenbank.
+     * Erstellung der Datenbank, Tabellen und Spalten folgt statisch, das Hinzufügen der Daten jedoch dynamisch.
+     */
     public void handleButtonDaten(ActionEvent actionEvent) {
+        //Tabellenname ist durch die Zeit der Erstellung ergänzt
         Date zeitstempel = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH_mm_dd_MM_yy");
-        System.out.println(simpleDateFormat.format(zeitstempel));
     try {
         Connection connection = getConnection();
         Schema schema = new Schema("raeuber_biomasse" + simpleDateFormat.format(zeitstempel));
@@ -177,7 +209,6 @@ public class ControllerBeuteRaeuber implements Initializable
         System.out.println(biomasse.create());
 //        updateStatement(connection, biomasse.create());
 
-
         for (int i = 0; i < length; i++)
         {
             Update biomasseUpdate = new Update("Biomasse");
@@ -193,4 +224,7 @@ public class ControllerBeuteRaeuber implements Initializable
         e.printStackTrace();
     }
     }
+
 }
+
+

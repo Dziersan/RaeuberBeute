@@ -29,10 +29,14 @@ public class JDBC {
         try
         {
             Connection connection = getConnection();
-            createSchema(connection, "Raeuber_und_Beute");
-            createTables(connection);
-            updateTable(connection);
+            createSchema(connection, "hase_fuchs18_01_07_01_20");
+
+//            createTables(connection);
+//            updateTable(connection);
+//            selectTable(connection);
             selectTable(connection);
+            selectTableDistinct(connection);
+            alterTable(connection);
             connection.close();
         }
         catch(SQLException e)
@@ -46,8 +50,6 @@ public class JDBC {
     public static void createSchema(Connection connection, String schemaName) throws SQLException
     {
         Schema schema = new Schema(schemaName);
-        updateStatement(connection, schema.drop());
-        updateStatement(connection, schema.create());
         updateStatement(connection, schema.use());
     }
 
@@ -55,12 +57,12 @@ public class JDBC {
     {
         Table biomasse = new Table("Biomasse");
 
-        biomasse.attributes.add(new PrimaryKey("Timestep" , Type.INTEGER));
+        biomasse.attributes.add(new PrimaryKey("Timestep" , Type.DECIMAL));
 //        biomasse.attributes.add(new Attribute("SUP_Name" , Type.VARCHAR));
 //        biomasse.attributes.add(new Attribute("Street" , Type.VARCHAR));
 //        biomasse.attributes.add(new Attribute("City" , Type.VARCHAR));
-        biomasse.attributes.add(new Attribute("Biomasse_Hase" , Type.INTEGER));
-        biomasse.attributes.add(new Attribute("Biomasse_Fuchs" , Type.INTEGER));
+        biomasse.attributes.add(new Attribute("Biomasse_Hase" , Type.DECIMAL));
+        biomasse.attributes.add(new Attribute("Biomasse_Fuchs" , Type.DECIMAL));
         updateStatement(connection, biomasse.create());
     }
 
@@ -69,12 +71,31 @@ public class JDBC {
         updateStatement(connection, biomasseUpdate.insertData(123,22,1));
     }
 
-    public static void selectTable(Connection connection)
+    public static void selectTableDistinct(Connection connection)
     {
         Select select = new Select();
-        select.selectTable("Timestep", "Biomasse_Hase");
-        select.whereTable("Biomasse");
+        select.selectTableDistinct("Timestep");
+        select.fromTable("Biomasse");
+
         System.out.println(select.getSqlStatement());
 
+    }
+    public static void selectTable(Connection connection) throws SQLException {
+        Select select = new Select();
+        select.selectTable("Timestep", "Biomasse_Hase");
+        select.fromTable("Biomasse");
+        updateStatement(connection, select.getSqlStatement());
+//        System.out.println(select.getSqlStatement());
+    }
+    public static void alterTable(Connection connection)
+    {
+        AlterTable alterTable = new AlterTable();
+
+        alterTable.selectTable("hase_fuchs18_01_07_01_20");
+        alterTable.addColumn("Weide", Type.DECIMAL);
+        alterTable.dropColumn("Biomasse_Hase");
+        alterTable.addConstraint("Biomasse", Constraint.ONDELETESETNULL);
+        alterTable.addForeignKey("Biomasse", "Weide", "Timestep","Steps");
+        System.out.println(alterTable.getSqlStatement());
     }
 }

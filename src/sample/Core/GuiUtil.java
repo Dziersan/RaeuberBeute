@@ -1,4 +1,4 @@
-package sample;
+package sample.Core;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -10,7 +10,7 @@ public class GuiUtil {
 
         length = getTime(length, timestep);
 
-        Double[][] graphxAxis = new Double[length][4];
+        Double[][] graphxAxis = new Double[length][9];
 
         double time = 0;
         for (int i = 0; i < length; i++) {
@@ -21,7 +21,9 @@ public class GuiUtil {
         return graphxAxis;
     }
 
-    static int getTime(double length, double timestep) {
+    /** Methode für das anpassen der x < 1 Timesteps
+     */
+    public static int getTime(double length, double timestep) {
         return (int) (length = (length / timestep));
     }
 
@@ -29,6 +31,9 @@ public class GuiUtil {
         return Math.round(100.0 * value) / 100.0;
     }
 
+    /** Constraints für die Textfelder. Damit soll vermieden werden, dass Buchstaben; Mehr als 4 Nachkommastellen;
+     * Mehr als ein "." eingegeben werden können.
+     */
     public static void setTextield(TextField textField) {
         textField.textProperty().addListener(new ChangeListener<String>() {
             @Override

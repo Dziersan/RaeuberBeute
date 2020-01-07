@@ -18,6 +18,4 @@ public enum Type {
     {
         return sqlTypeString;
     }
-
-
 }

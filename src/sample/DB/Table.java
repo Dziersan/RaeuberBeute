@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Table {
 
 
+    String sqlStatement;
     String name = null;
     ArrayList<Attribute> attributes = new ArrayList<>();
 
@@ -19,7 +20,10 @@ public class Table {
         attributes.add(new Attribute(name, type));
         return this;
     }
-
+    public void dropTable()
+    {
+        sqlStatement = "DROP TABLE IF EXISTS " + name + ";";
+    }
     public Table addPrimaryKey(String name, Type type)
     {
         attributes.add(new PrimaryKey(name, type));
@@ -45,6 +49,10 @@ public class Table {
                 sqlStatement += ", PRIMARY KEY (" + sqlStatementPrimaryKeys + "));";
             }
         }
+        return sqlStatement;
+    }
+
+    public String getSqlStatement() {
         return sqlStatement;
     }
 }

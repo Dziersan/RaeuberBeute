@@ -1,16 +1,22 @@
-package sample;
+package sample.Core;
 
-public class Beute {
+public class Raeuber {
+
+
     double biomasse = 0;
-    double rate = 0;
     double gleichgewicht = 0;
+    double rate = 0;
 
-
-    public Beute(double biomasse, double rate, double gleichgewicht)
+    public Raeuber(double Biomasse, double rate, double gleichgewicht)
     {
-        this.biomasse = biomasse;
+        this.biomasse = Biomasse;
         this.rate = rate;
         this.gleichgewicht = gleichgewicht;
+    }
+
+    public double giveTreffen(Beute tier, double treffen)
+    {
+        return this.rate/tier.getGleichgewicht()*treffen;
     }
 
     public double giveBiomasseAenderung()
@@ -18,26 +24,12 @@ public class Beute {
         return (biomasse*rate);
     }
 
-    public double giveTreffen(Raeuber tier, double treffen)
-    {
-        return this.rate/tier.getGleichgewicht()*treffen;
-    }
-
     public double getBiomasse() {
         return biomasse;
     }
 
-
     public void setBiomasse(double biomasse) {
         this.biomasse = biomasse;
-    }
-
-    public double getRate() {
-        return rate;
-    }
-
-    public void setRate(double rate) {
-        this.rate = rate;
     }
 
     public double getGleichgewicht() {
@@ -48,8 +40,16 @@ public class Beute {
         this.gleichgewicht = gleichgewicht;
     }
 
+    public double getRate() {
+        return rate;
+    }
+
+    public void setRate(double rate) {
+        this.rate = rate;
+    }
+
     @Override
     public String toString() {
-        return "Hasebiomasse: " + biomasse;
+        return "Fuchsbiomasse: " + biomasse;
     }
 }
