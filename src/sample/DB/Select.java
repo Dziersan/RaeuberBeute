@@ -4,8 +4,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Select {
+
+    public void setSqlStatement(String sqlStatement) {
+        this.sqlStatement = sqlStatement;
+    }
+
     String sqlStatement = "SELECT ";
     private int whereCounter = 0;
+
+    public void selectTable(String columnName)
+    {
+            sqlStatement += columnName + ", ";
+    }
 
     public void selectTable(String... columnName)
     {
@@ -31,6 +41,19 @@ public class Select {
         sqlStatement += columns.get(columns.size()-1);
     }
 
+    public void count(String columnName)
+    {
+        sqlStatement += "count(" + columnName + ")";
+    }
+
+    public void avg(String columnName)
+    {
+        sqlStatement += "avg(" + columnName + ")";
+    }
+    public void sum(String columnName)
+    {
+        sqlStatement += "sum(" + columnName + ")";
+    }
     public void fromTable(String...tableName)
     {
         ArrayList<String> tableNames = new ArrayList<String>();
@@ -42,6 +65,11 @@ public class Select {
             sqlStatement += tableNames.get(i)+", ";
         }
         sqlStatement += tableNames.get(tableNames.size()-1);
+    }
+
+    public void fromTable(String tableName)
+    {
+        sqlStatement += tableName + ", ";
     }
 
 public void whereTableJoin(String table1, String table2, String column1, String column2) {
@@ -99,7 +127,7 @@ public void whereTableJoin(String table1, String table2, String column1, String 
             sqlStatement += " AND ";
 
         whereCounter++;
-        sqlStatement += column + " like " + pattern;
+        sqlStatement += column + " like " + "'" + pattern + "'";
     }
 
     public void whereTableIn(String column, String pattern) {
@@ -109,7 +137,16 @@ public void whereTableJoin(String table1, String table2, String column1, String 
             sqlStatement += " AND ";
 
         whereCounter++;
-        sqlStatement += column + " in " + pattern;
+        sqlStatement += column + " in " + "'" + pattern + "'";
+    }
+    public void whereTableNotEqual(String column, String pattern) {
+        if(whereCounter == 0)
+            sqlStatement += " where ";
+        else
+            sqlStatement += " AND ";
+
+        whereCounter++;
+        sqlStatement += column + " <> " + "'" + pattern + "'";
     }
 
     public void createView(String viewName)
