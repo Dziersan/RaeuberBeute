@@ -13,10 +13,13 @@ public class Leistung_DB {
     static String schemaName;
     public static Connection connection;
 
-    static {
-        try {
+    static
+    {
+        try
+        {
             connection = JDBC.getConnection();
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -24,20 +27,25 @@ public class Leistung_DB {
     public static void main(String[] args) throws SQLException {
         boolean nameBool = false;
 
-        while (true) {
-            while (nameBool == false) {
+        while (true)
+        {
+            while (nameBool == false)
+            {
                 System.out.println("Geben Sie den Namen des Schemas an");
-                try {
+                try
+                {
                     schemaName = reader.readLine();
                     nameBool = true;
-                } catch (Exception e) {
+                }
+                catch (Exception e) {
                     System.out.println("Beim Lesen ist es zu folgenden Fehler gekommen: " + e.getMessage());
                 }
 
                 Schema schema = new Schema(schemaName);
                 updateStatement(connection, schema.use());
 
-                while (nameBool == true) {
+                while (nameBool == true)
+                {
                     System.out.println("Geben Sie den Buchstaben für einen der Befehle ein:");
                     System.out.println("(V) - Mainview erstellen ");
                     System.out.println("(T) - Table erstellen");
@@ -45,10 +53,12 @@ public class Leistung_DB {
                     System.out.println("(W) - Select");
                     System.out.println("(N) - Neues Schema angeben");
                     System.out.println("(E) - Exit");
-                    try {
+                    try
+                    {
                         String cmd = reader.readLine();
                         executeCommand(cmd.toUpperCase());
-                    } catch (Exception e) {
+                    }
+                    catch (Exception e) {
                         System.out.println("Beim Lesen ist es zu folgenden Fehler gekommen: " + e.getMessage());
                     }
                 }
@@ -63,7 +73,6 @@ public class Leistung_DB {
 
     private static void createMainView() throws SQLException {
 
-
         Select createView = new Select();
         createView.createView("Fuchs_Hase_Weide");
         createView.selectTable("Timestep_Fuchs as Timestep", "Biomasse_Fuchs", "Biomasse_Hase", "Weideflaeche");
@@ -73,10 +82,11 @@ public class Leistung_DB {
         updateStatement(connection, createView.getSqlStatement());
     }
 
-    private static void createTable() throws SQLException {
+    private static void createTable() throws SQLException
+    {
         boolean doneBool = false;
-
-        try {
+        try
+        {
             System.out.println("Geben Sie den Namen ein:");
             String name = reader.readLine();
             Table table = new Table(name);
@@ -87,7 +97,8 @@ public class Leistung_DB {
             String type = reader.readLine();
             table.attributes.add(new PrimaryKey(columnPK, getType(type)));
 
-            while (doneBool == false) {
+            while (doneBool == false)
+            {
                 System.out.println("Geben Sie den Namen der Spalte an");
                 String column = reader.readLine();
                 System.out.println(" (1) - DECIMAL \n (2) - VARCHAR \n (3) - DATE \n (4) - BOOLEAN \n (5) - INTEGER");
@@ -105,19 +116,23 @@ public class Leistung_DB {
 //                updateStatement(connection, table.create());
             }
 
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             System.out.println("Beim Lesen ist es zu folgenden Fehler gekommen: " + e.getMessage());
         }
     }
+
 public static void deleteTable()
 {
-    try{
+    try
+    {
         System.out.println("Geben Sie den Namen des Tables an");
         String tableName = reader.readLine();
         Table table = new Table(tableName);
         table.dropTable();
         updateStatement(connection, table.getSqlStatement());
-    }catch (Exception e)
+    }
+    catch (Exception e)
     {
         System.out.println("Beim Lesen ist es zu folgenden Fehler gekommen: " + e.getMessage());
     }
@@ -127,7 +142,8 @@ public static void deleteTable()
     {
         boolean doneBool = false;
         Select select = new Select();
-        try{
+        try
+        {
             System.out.println("(T) - Spaltennamen angeben");
             System.out.println("(C) - Count nach einer Spalte");
             System.out.println("(S) - SUM nach einer Spalte");
@@ -142,20 +158,22 @@ public static void deleteTable()
             {
                 doneBool = true;
             }
-            System.out.println("Spaltenname angeben");
+
+            if(doneBool == false)
+                System.out.println("Spaltenname angeben");
+
             while(doneBool == false)
             {
-
                 String tableName = reader.readLine();
                 select.selectTable(tableName);
                 System.out.println("Fertig? J/N");
                 String fertig = reader.readLine();
                 if (fertig.equals("J") || fertig.equals("j")) {
-                    select.setSqlStatement(select.getSqlStatement().substring(0,select.getSqlStatement().length()-2));
+                   select.setSqlStatement(select.getSqlStatement().substring(0,select.getSqlStatement().length()-3));
                     doneBool = true;
                 }
                 else
-                    System.out.println("Spaltenname angeben");
+                    System.out.println("Spaltenname angeben!");
             }
 
             doneBool = false;
@@ -169,7 +187,7 @@ public static void deleteTable()
                 String fertig = reader.readLine();
 
                 if (fertig.equals("J") || fertig.equals("j")) {
-                    select.setSqlStatement(select.getSqlStatement().substring(0,select.getSqlStatement().length()-2));
+                    //select.setSqlStatement(select.getSqlStatement().substring(0,select.getSqlStatement().length()-2));
                     doneBool = true;
                 }
                 else
@@ -191,15 +209,22 @@ public static void deleteTable()
                 System.out.println("Fertig? J/N");
                 String fertig = reader.readLine();
 
-                if (fertig.equals("J") || fertig.equals("j")) {
+                if (fertig.equals("J") || fertig.equals("j"))
                     doneBool = true;
-                }
                 else
+                    System.out.println("(J) - Join");
+                    System.out.println("(E) - Equal");
+                    System.out.println("(L) - Lesser");
+                    System.out.println("(G) - Greater");
+                    System.out.println("(I) - Like");
+                    System.out.println("(N) - Notlike");
+                    System.out.println("(F) - Fertig");
                     cmd = reader.readLine();
             }
             System.out.println(select.getSqlStatement());
-            //JDBC.updateStatement(connection, select.getSqlStatement());
-        }catch (Exception e)
+//            JDBC.updateStatement(connection, select.getSqlStatement());
+        }
+        catch (Exception e)
         {
             System.out.println("Beim Lesen ist es zu folgenden Fehler gekommen: " + e.getMessage());
         }
@@ -229,7 +254,7 @@ public static void deleteTable()
                 updateStatement(connection, schema.use());
                 break;
             default: // Falsche/unbekannte Eingabe
-                System.out.println("Unbekanntes Kürzel");
+
         }
     }
 
@@ -293,8 +318,6 @@ public static void deleteTable()
                 return select;
 
             default: // Falsche/unbekannte Eingabe
-
-                System.out.println("Unbekanntes Kürzel");
                 return select;
         }
     }
@@ -302,17 +325,17 @@ public static void deleteTable()
         switch (cmd) {
             case "T":
             return select;
-            case "C":
+            case "C"://count
                 System.out.println("Welche Spalte?");
                 String command = reader.readLine();
                     select.count(command);
                     return select;
-            case "S":
+            case "S"://sum
                 System.out.println("Welche Spalte?");
                 String command1 = reader.readLine();
                 select.sum(command1);
                 return select;
-            case "A":
+            case "A"://avarage
                 System.out.println("Welche Spalte?");
                 String command2 = reader.readLine();
                 select.avg(command2);

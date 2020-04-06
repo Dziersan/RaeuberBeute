@@ -10,6 +10,7 @@ public class Select {
     }
 
     String sqlStatement = "SELECT ";
+    private int fromCounter = 0;
     private int whereCounter = 0;
 
     public void selectTable(String columnName)
@@ -69,7 +70,13 @@ public class Select {
 
     public void fromTable(String tableName)
     {
-        sqlStatement += tableName + ", ";
+        if(fromCounter <= 0)
+        {
+            sqlStatement += " from " + tableName;
+            fromCounter++;
+        }
+        else
+            sqlStatement+= ", " + tableName;
     }
 
 public void whereTableJoin(String table1, String table2, String column1, String column2) {
